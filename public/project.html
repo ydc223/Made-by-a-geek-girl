@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+    <link rel="stylesheet" href="styleProject.css">
+    <script src="https://cdn.socket.io/socket.io-1.0.0.js"></script>
+    <link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.6.0/pure-min.css">
+
+
+    <!-- uncomment lines below to include extra p5 libraries -->
+  <!--<script language="javascript" src="libraries/p5.dom.js"></script>-->
+  <!--<script language="javascript" src="libraries/p5.sound.js"></script>-->
+
+  <!-- this line removes any default padding and style. you might only need one of these values set. -->
+
+  <style> body {padding: 0; margin: 0;} </style>
+
+</head>
+<body >
+    <h1>What does a scientist look like?</h1>
+<div id="background">
+    <div class="container"></div>
+    <div id="sketch"></div>
+    <div class="container"></div>
+    <div class = "inline"> <p>Press spacebar to toggle eraser </p> </div>
+    <button id="myBtn" onclick="saveImage()" class="button-success pure-button">Submit</button>
+
+    <div class="container"></div>
+
+</div>
+  <script language="javascript" type="text/javascript" src="client.js"></script>
+  <script language="javascript" type="text/javascript" src="sketch.js"></script>
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/p5.js/0.4.23/p5.js"></script>
+</body>
+</html>

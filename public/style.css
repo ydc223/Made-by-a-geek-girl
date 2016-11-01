@@ -1,0 +1,77 @@
+body {
+	font-family: 'Lora', serif;
+	background-color: beige;
+	/*#00ffbf Nice color */
+}
+h1{
+	font-family: 'Lora', serif;
+	text-align: center;
+
+}
+
+#geek{
+	color: rgb(47,197,203);
+}
+
+.inblog{
+	color: beige;
+}
+.menu{
+	font-size: 20px;
+	padding-top: 20px;
+	text-transform: uppercase;
+	color: #3c3b38;
+	width: 40%;
+	left: 30%;
+	margin: auto;
+	text-align: center;
+
+}
+a{
+	color: #3c3b38;
+	text-decoration: none;
+}
+
+#home:hover, #blog:hover, #projects:hover{
+	color: dimgrey;
+}
+
+#inblog:hover{
+	font-weight: bold;
+}
+
+#background{
+	background: url("images/cheshire.jpg")repeat;
+	background-size: 600px;
+}
+
+.post{
+	padding: 20px;
+
+}
+div.transbox {
+	margin: 30px;
+	background-color: #ffffff;
+	border: 1px solid black;
+	opacity: 0.5;
+	filter: alpha(opacity=60); /* For IE8 and earlier */
+	text-align: justify;
+	border-radius: 15px;
+}
+img{
+	background-color: beige;
+
+}
+.container{
+	position: absolute;
+	bottom: 10px;
+	right: 30px;
+	color: #3c3b38;
+}
+#copyright{
+
+	color: beige;
+	padding-right: 30px;
+	text-align: right;
+
+}
