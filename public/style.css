@@ -1,36 +1,92 @@
-body {
-	font-family: 'Lora', serif;
+ body {
+	font-family: 'proxima-nova', serif;
 	background-color: beige;
 	/*#00ffbf Nice color */
 }
 h1{
-	font-family: 'Lora', serif;
+	font-family: 'proxima-nova', serif;
+	text-transform: uppercase;
+	font-size: 20px;
+	font-weight:100;
 	text-align: center;
 
 }
+
+.projects{
+  margin-top: 50px;
+  list-style: none;
+  text-align: center;
+}
+
+.projects li{
+  display: inline-block;
+  padding-right: 10px;
+  padding-left: 10px;
+  margin-bottom: 10px;
+}
+
+.projects li a img{
+  opacity: 0.7;
+  filter: alpha(opacity=50);
+}
+
+.projects li a img:hover {
+    opacity: 1.0;
+    filter: alpha(opacity=100); /* For IE8 and earlier */
+}
+
 
 #geek{
 	color: rgb(47,197,203);
 }
+#blog-images{
+	width:50%;
+}
+
 
 .inblog{
-	color: beige;
+	color: black;
+
 }
+
 .menu{
 	font-size: 20px;
 	padding-top: 20px;
+	padding-bottom: 20px;
 	text-transform: uppercase;
 	color: #3c3b38;
 	width: 40%;
 	left: 30%;
-	margin: auto;
+	margin: 0px auto;
+	top: 0px;
 	text-align: center;
+	position:fixed;
+}
+
+#blog_menu{
+	left:0%;
+	width:100%;
+	background-color:white;
+	text-align: left;
+	padding-left: 3.5em;
+
 
 }
+
 a{
 	color: #3c3b38;
 	text-decoration: none;
 }
+
+a.inblog{
+	color: dimgrey;
+	text-decoration: none;
+
+ }
+
+a.inblog:hover{
+	color: rgb(47,197,203);
+ }
 
 #home:hover, #blog:hover, #projects:hover{
 	color: dimgrey;
@@ -41,23 +97,34 @@ a{
 }
 
 #background{
-	background: url("images/cheshire.jpg")repeat;
-	background-size: 600px;
+	background-color: white;
 }
 
-.post{
+.{
 	padding: 20px;
 
 }
+div.leftbox {
+	max-width: 20%;
+	float: left;
+	height: inherit;
+	padding:4em;
+	text-align: justify;
+}
+
 div.transbox {
 	margin: 30px;
-	background-color: #ffffff;
-	border: 1px solid black;
-	opacity: 0.5;
-	filter: alpha(opacity=60); /* For IE8 and earlier */
+	max-width: 78%;
+	float: right;
 	text-align: justify;
-	border-radius: 15px;
+	padding-top: 20px;
 }
+
+div#start{
+	padding-top: 20px;
+
+}
+
 img{
 	background-color: beige;
 
@@ -73,5 +140,17 @@ img{
 	color: beige;
 	padding-right: 30px;
 	text-align: right;
+}
 
+
+.list-unstyled {
+  text-align: center;
+	padding-left: 0;
+	list-style: none;
+}
+.list-inline li {
+	display: inline-block;
+	padding-right: 5px;
+	padding-left: 5px;
+	margin-bottom: 10px;
 }

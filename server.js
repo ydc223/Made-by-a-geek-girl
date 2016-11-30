@@ -3,11 +3,14 @@ var http = require('http');
 var path = require('path');
 //fs - the filesystem module that allow to read/write from the disk
 var fs =  require('fs');
-
-
+var mongoose = require('mongoose');
+var moreThan140 = require("./api/moreThan140.js");
+var paidgrade = require("./api/paidgrade.js");
 
 var app = new express();
 app.set('port', 80);
+mongoose.connect('mongodb://46.101.192.178/reportedbribes');
+
 
 app.use(express.static(path.join(__dirname, 'public')));
 
@@ -84,23 +87,13 @@ app.get('/gallery', function(req, res, err){
 	}
 	res.end();
 	console.log(files);
+	});
 });
-//this is where you do the fs.readdir thing to get your array of paths
 
+app.get('/leave_comment', moreThan140.submitComments);
+app.get('/comments', moreThan140.fetchComments);
+app.get('/submit', paidgrade.submitBribe);
 
-
-
-
-//below is a place to start for the react rendering part
-	//var data = {};
-	//data.img_paths = [];
-
-	//for(var i = 0; i<images; i++){
-	//	data.img_paths[i] = images[i];
-	//}
-
-	//res.render('results', data);
-});
 
 
 

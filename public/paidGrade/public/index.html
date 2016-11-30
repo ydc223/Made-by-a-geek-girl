@@ -1,0 +1,328 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="A layout example that shows off a responsive product landing page.">
+
+    <title>Paid Grade</title>
+<link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.6.0/pure-min.css">
+
+<link rel='stylesheet prefetch' href='http:////netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css'>
+
+
+
+
+<!--[if lte IE 8]>
+
+    <link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.6.0/grids-responsive-old-ie-min.css">
+
+<![endif]-->
+<!--[if gt IE 8]><!-->
+
+    <link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.6.0/grids-responsive-min.css">
+
+<!--<![endif]-->
+
+<link rel="stylesheet" href="http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css">
+
+    <!--[if lte IE 8]>
+        <link rel="stylesheet" href="css/layouts/marketing-old-ie.css">
+    <![endif]-->
+    <!--[if gt IE 8]><!-->
+        <link rel="stylesheet" href="css/layouts/marketing.css">
+    <!--<![endif]-->
+
+    <!--Jquery-->
+
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
+
+
+
+</head>
+<body>
+
+
+
+
+
+
+
+  <div class="header">
+      <div class="home-menu pure-menu pure-menu-horizontal pure-menu-fixed">
+
+          <ul class="pure-menu-list">
+              <li class="pure-menu-item pure-menu-selected"><a href="#" class="pure-menu-link">PAID GRADE</a></li>
+              <li class="pure-menu-item"><a href="#information" class="pure-menu-link">ПРО НАС</a></li>
+              <li class="pure-menu-item"><a href="#contacts" class="pure-menu-link">КОНТАКТИ</a></li>
+          </ul>
+      </div>
+  </div>
+
+
+
+
+<div class="splash-container">
+    <div class="splash">
+      <p>
+        <a href="#information" class="pure-button pure-button-active" id="btn">Поділитися досвідом</a>
+      </p>
+    </div>
+</div>
+
+<div id="information" class="content-wrapper">
+
+    <div class="content">
+        <center><h2 class="content-head is-center">Поділись особистим досвідом хабарництва в сфері освіти </h2></center>
+        <center><p class="content-head is-center"> Майте на увазі, що правдивість вашої інформації грає дуже важливу
+          роль. Ви можете залишитися анонімним, якщо забажаете. Надана вами інформація буде використана
+        виключно в наукових цілях. </p></center>
+
+
+        <div class="pure-g">
+            <div class="l-box-lrg pure-u-1 pure-u-md-2-5">
+                <div class="pure-form  pure-form-stacked">
+
+                        <label for="name">Ім'я (необов'язково)</label>
+                        <input id="name" type="text" placeholder="Ім'я">
+
+
+                        <label for="email">Email (необов'язково)</label>
+                        <input id="email" type="email" placeholder="Email" required>
+
+                        <label for="city">Місто навчання</label>
+                        <select id="city" placeholder="Інше" onchange="cityHandler()">
+                          <option value="kiev">Київ</option>
+                          <option value="lviv">Львів</option>
+                          <option value="kharkiv">Харків</option>
+                          <option value="odesa">Одеса</option>
+                          <option value="other">Інше</option>
+                        </select>
+
+
+                        <div id="invalid_city"></div>
+
+                        <div id="customCity"></div>
+
+
+                        <label for="university">Університет</label>
+                        <select id="university" placeholder="Інший" onchange="universtityHandler()">
+                          <option value='knu'>Київський національний університет імені Тараса Шевченка (КНУ)</option>
+                          <option value='knau'>Національний авіаційний університет (НАУ)</option>
+                          <option value='kteu'>Київський національний торговельно-економічний університет</option>
+                          <option value='kpi'>Національний технічний університет України “Київський політехнічний інститут”</option>
+                          <option value='kneu'>Київський національний економічний університет ім. Вадима Гетьмана</option>
+                          <option value='kutd'>Київський національний університет технологій і дизайну</option>
+                          <option value='knuba'>Київський національний університет будівництва і архітектури</option>
+                          <option value='knlu'>Київський національний лінгвістичний університет</option>
+                          <option value='other'> Інший </option>
+
+                        </select>
+
+                        <div id="invalid_university"></div>
+
+
+                        <div id="customUniversity"></div>
+
+                        <div id="invalid_major"></div>
+
+                        <label for="major">Ваша спеціальність (повна назва)</label>
+                        <input id="major" type="text" placeholder="Ваша спеціальність">
+
+                        <div id="invalid_department"></div>
+
+                        <label for="department">Ваш факультет (повна назва)</label>
+                        <input id="department" type="text" placeholder="Ваш факультет">
+
+
+                        <label for="bribe-yes" > Ви колись платили хабар (клацніть поле якщо <i>так</i>, залишіть пустим якщо <i>ні</i>)?
+                           <input id="bribe-yes" type="checkbox" >
+                           <center>Так</center>
+                        </label>
+
+                        <label for="forced-yes" > Вас просили заплатити?
+                           <input id="forced-yes" type="checkbox">
+                           <center>Так</center>
+                         </label>
+
+                       <label for="bribe-other" > Чи відомі вам інші випадки хабарництва в вашому вузі?
+                          <input id="bribe-other" type="checkbox">
+                          <center>Так</center>
+                        </label>
+
+
+                        <label for="subject">Оберіть сферу навчання предмету за який ви заплатили хабар?</label>
+                        <select id="subject" placeholder="Предмет" >
+                          <option value="0">Готельно-ресторанна справа, туризм</option>
+                    			<option value="1">Ветеринарна медицина</option>
+                    			<option value="2">Педагогіка</option>
+                    			<option value="3">Менеджмент, маркетинг</option>
+                    			<option value="4">Авіаційна та ракетно-космічна техніка</option>
+                    			<option value="5">Автоматизація, приладобудування</option>
+                    			<option value="6">Біологія, екологія</option>
+                    			<option value="7">Військові науки, національна безпека</option>
+                    			<option value="8">Географія, геологія</option>
+                    			<option value="9">Журналістика, видавництво та поліграфія</option>
+                    			<option value="10">Інформаційні технології, кібербезпека</option>
+                    			<option value="11">Історія, археологія</option>
+                    			<option value="12">Культура, мистецтво</option>
+                          <option value="13">Koп'ютерні науки</option>
+                    			<option value="14">Легка промисловість</option>
+                    			<option value="15">Математика, статистика</option>
+                    			<option value="16">Інженерія, машинобудування</option>
+                    			<option value="17">Медицина, фармація</option>
+                    			<option value="18">Металургія</option>
+                    			<option value="19">Цивільна безпека</option>
+                    			<option value="20">Харчові технології</option>
+                    			<option value="21">Політологія, міжнародні відносини</option>
+                    			<option value="22">Психологія</option>
+                    			<option value="23">Електроніка, телекомунікації</option>
+                    			<option value="24">Аграрні науки та продовольство</option>
+                    			<option value="25">Соціологія, соціальна робота</option>
+                    			<option value="26">Будівництво, архітектура</option>
+                    			<option value="27">Транспорт</option>
+                    			<option value="28">Фізика, астрономія</option>
+                    			<option value="29">Фізична культура</option>
+                    			<option value="30">Філологія</option>
+                    			<option value="31">Філософія, релігія та культурологія</option>
+                    			<option value="32">Хімія, біоінженерія</option>
+                    			<option value="33">Економіка</option>
+                    			<option value="34">Енергетика</option>
+                    			<option value="35">Право</option>
+                    			<option value="36">Інше</option>
+                        </select>
+
+                        <label for="official">Посадова особа</label>
+                        <select id="official" placeholder="Посадова особа" >
+                          <option value="0">Викладач</option>
+                    			<option value="1">Аспірант</option>
+                    			<option value="2">Декан</option>
+                    			<option value="3">Інша</option>
+                        </select>
+
+                        <label for="officialName">Ім'я посадової особи (необов'язково)</label>
+                        <input id="officialName" type="text" placeholder="Ім'я посадової особи">
+
+                        <div id="invalid_amount"></div>
+
+                        <label for="amount">Сума в гривні</label>
+                        <input id="amount" type="number" min="1" max="25000" placeholder="Сума">
+
+                        <label for="grade">Оцінка</label>
+                        <select id="grade" placeholder="Оцінка" >
+                          <option value="A">A </option>
+                          <option value="A-">A- </option>
+                          <option value="B+">B+ </option>
+                          <option value="B">B </option>
+                          <option value="B-">B- </option>
+                          <option value="C+">C+ </option>
+                          <option value="C">C </option>
+                          <option value="C-">C- </option>
+                        </select>
+
+
+
+
+
+                        <label for="size">Розмір вашого потоку?</label>
+                        <select id="size" placeholder="Розмір" >
+                          <option value="0">Меньше 20</option>
+                    			<option value="1">20-50</option>
+                    			<option value="2">50-100</option>
+                    			<option value="3">100-200</option>
+                          <option value="4">Більше 200</option>
+                        </select>
+
+                        <div id=confirmation></div>
+
+                        <center><button id="btn" type="submit" class="pure-button" onclick="validateInput()">Поділитися</button></center>
+
+
+                </div>
+            </div>
+
+            <div  class="l-box-lrg pure-u-1 pure-u-md-3-5">
+
+
+              <h4>Більше інформації</h4>
+                <p>
+                  Корупція є неприйнятним явищем в престижних універстетах світу, оскільки вища освіта грає
+                  найважливішу роль у формуванні поглядів, знання та досвіду.
+                  Українці - дуже розумна нація, яка здатна на інновації та наукові вікриття,
+                  але, нажаль, корупція в сфері освіти дуже лімітує український потенціал та стає на заваді до якісної освіти.
+                  Корупцію можна здолати суспільними зусиллями, але для цього потрібно щоб громадяни індивідуально хотіли цього.
+                </p>
+
+                <p>
+                  Тому я вирішила створити проект, Paid Grade який не тільки демонструє рівень корупції в сфері освіти
+                  а й пропонує рішення цієї проблеми. Метою проекту є продемонструвати, що корупція в сфері освіти не є
+                  нормою в розвинутих країнах і заохотити студентів та викладачів активно повідомляти про випадки корупції.
+                </p>
+
+                <h4>Стадії розробки</h4>
+                  <p>
+                    Перша стадія: зібрати інформацію про випадки хабарництва в університетах.
+                  </p>
+                  <p>
+
+                    Друга стадія: проаналізувати інформацію та зробити її публічно доступною
+                    (таку як, вартість середньостатистичного хабара залежно від міста та університету).
+                  </p>
+                  <p>
+                    Третя стадія: розробити офіційну онлайн систему для повідомлення випадків
+                    корупції в державних установах України.
+                  </p>
+
+
+                  <h4 >Корисні посилання українською</h4>
+                      <ul class="list-unstyled links">
+                      <li><a href="http://www.acrc.org.ua/ua/contacts/kudy-poskarzhytys-na-korupcziyu.html">&emsp; Куди поскаржитись про корупцію</a></li>
+                      <li><a href="http://www.acrc.org.ua/ua/legislation/laws-of-ukraine/">&emsp; Антикорупційний портал</a></li>
+                      <li><a href="http://www.acrc.org.ua/ua/legislation/laws-of-ukraine/">&emsp; Закони України щодо корупції</a></li>
+                      <li><a href="http://kiis.com.ua/materials/pr/20161602_corruption/Corruption%20in%20Ukraine%202015%20UKR.pdf">&emsp; Стан корупції в Украіні</a></li>
+                      <li><a href="http://ti-ukraine.org/system/files/docs/news/how-much-does-corruption-cost-ukraine_presentation_ces.pdf">
+                        &emsp; Якби не було корупції</a></li>
+                      <li><a href="http://ti-ukraine.org/%D1%82%D0%B5%D0%B3%D0%B8/%D0%BA%D0%BE%D1%80%D1%83%D0%BF%D1%86%D1%96%D1%8F">&emsp; Transparancy International</a></li>
+                      <li><a href="http://voxukraine.org/2016/02/04/addressing-corruption-in-ukraine-ua/">&emsp; Боротьба з корупцією</a></li>
+                    </ul>
+
+                    <h4 id="contacts">Корисні посилання англійською</h4>
+                      <ul class="list-unstyled links">
+                        <li><a href="http://www.ua.undp.org/content/ukraine/en/home/presscenter/articles/2016/03/15/new-project-to-help-ukraine-prevent-corruption.html
+                            ">&emsp; Project to prevent corruption</a></li>
+                        <li><a href="http://www.coe.int/t/DGHL/cooperation/economiccrime/corruption/Projects/upac/upac_en.asp">
+                          &emsp; Corruption UPAC Project Ukraine</a></li>
+                        <li><a href="http://www.oecd.org/corruption/acn/ukraine-oecd-anti-corruption-project.htm
+                          ">&emsp; Anti corruption network </a></li>
+                        <li><a href="http://www.transparency.org/content/download/32778/502137">&emsp; Corruption Perception Index</a></li>
+                        <li><a href="https://www.google.ae/url?sa=t&rct=j&q=&esrc=s&source=web&cd=2&cad=rja&uact=8&ved=0ahUKEwjGw_fejszQAhVGaxQKHSVEBX4QFggnMAE&url=https%3A%2F%2Fejournals.bc.edu%2Fojs%2Findex.php%2Fihe%2Farticle%2Fdownload%2F7981%2F7132&usg=AFQjCNHS3GnUxi9-qupPNWYRnv3XA95Dww&sig2=Q0sP_MGmrGssvX3euYwXEw&bvm=bv.139782543,d.bGg
+                          ">&emsp; Higher Education Corruption in Ukraine</a></li>
+                      </ul>
+
+                <h4>Контакти</h4>
+                <p>Засновник проекту - Яна Чала - студентка в Нью Йоркському Університеті в Абу Дабі, що вивчає комп'ютерні науки.
+                Будь ласка відправляйте коментарі та пропозиції на мою електронну пошту ydc223@nyu.edu або зв'яжіться зі мною на соціальних мережах.
+              </p>
+
+                <ul class="social-icons icon-circle icon-zoom list-unstyled list-inline">
+                  <li><a href="https://www.linkedin.com/in/yana-chala-296086114?trk=hp-identity-name"><i class="fa fa-linkedin"></i></a> </li>
+                  <li> <a href="https://github.com/ydc223"><i class="fa fa-github"></i></a> </li>
+                  <li> <a href="https://vk.com/try_to_find_yourself"><i class="fa fa-vk"></i></a></li>
+                  <li> <a href="https://www.facebook.com/jana.chalaya"><i class="fa fa-facebook"></i></a></li>
+                </ul>
+
+            </div>
+        </div>
+
+    </div>
+
+
+    <div class="footer l-box is-center">
+    </div>
+
+</div>
+<script type="text/javascript" src="js/script.js"></script>
+
+
+</body>
+</html>
