@@ -1,5 +1,5 @@
 /*Yana*/
-#invalid_amount, #invalid_city, #invalid_university, #invalid_input, #invalid_major{
+#invalid_input, .red{
   color: red;
 }
 

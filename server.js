@@ -6,9 +6,11 @@ var fs =  require('fs');
 var mongoose = require('mongoose');
 var moreThan140 = require("./api/moreThan140.js");
 var paidgrade = require("./api/paidgrade.js");
+var testdata = require("./api/testdata.js");
+
 
 var app = new express();
-app.set('port', 80);
+app.set('port', 8080);
 mongoose.connect('mongodb://46.101.192.178/reportedbribes');
 
 
@@ -93,6 +95,8 @@ app.get('/gallery', function(req, res, err){
 app.get('/leave_comment', moreThan140.submitComments);
 app.get('/comments', moreThan140.fetchComments);
 app.get('/submit', paidgrade.submitBribe);
+app.get('/test', testdata.test);
+
 
 
 

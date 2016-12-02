@@ -1,3 +1,17 @@
+$(document).ready(test());
+
+function test(){
+  $.ajax({
+    url: "/test",
+    type: "GET",
+    datatype: "json"
+  }).done(function(json){
+    console.log('cool');
+  }).fail(function(xhr, status, error){
+    $("#confirmation").append("<p id='submit_failed'> Щось пішло не так, спробуйте ще раз.</p>");
+  });
+}
+
 $(function() {
     $(window).on("scroll", function() {
         if($(window).scrollTop() > 500) {
@@ -28,7 +42,6 @@ function validateInput(){
 
     $("#invalid_city").append("<p id='invalid'>Введіть ваше місто будь ласка</p>");
     $("#confirmation").append("<p id='invalid_input'>Введіть ваше місто будь ласка</p>");
-
   }
   else if (($("#university").val()=="other")&($("#input_сustom_university").val()=="") ){
     console.log("CUSTOM UNI");
@@ -37,7 +50,6 @@ function validateInput(){
 
     $("#invalid_university").append("<p id='invalid'>Введіть назву вашого універсітету будь ласка</p>");
     $("#confirmation").append("<p id='invalid_input'>Введіть назву вашого універсітету будь ласка</p>");
-
   }
   else if ($('#major').val()==""){
     console.log("Major");
@@ -54,7 +66,22 @@ function validateInput(){
 
     $("#invalid_department").append("<p id='invalid'>Введіть ваш факультет будь ласка</p>");
     $("#confirmation").append("<p id='invalid_input'>Введіть вашу факультет будь ласка</p>");
+  }
+  else if (($("#subject").val()=="-1")&(_bribeyes)){
+    console.log();
+    $('#invalid').remove();
+    $('#invalid_input').remove();
 
+    $("#invalid_subject").append("<p id='invalid'>Введіть предмет за який ви заплатили</p>");
+    $("#confirmation").append("<p id='invalid_input'>Введіть предмет за який ви заплатили</p>");
+  }
+  else if (($("#official").val()=="-1")&(_bribeyes)){
+    console.log();
+    $('#invalid').remove();
+    $('#invalid_input').remove();
+
+    $("#invalid_official").append("<p id='invalid'>Введіть позицію посадової особи котрій ви заплатили </p>");
+    $("#confirmation").append("<p id='invalid_input'>Введіть позицію посадової особи котрій ви заплатили </p>");
   }
   else{
     console.log("Validate Worked");
@@ -162,6 +189,23 @@ function cityHandler(){
   }
 }
 
+function subjectHandler(){
+  var subject = $("#subject").val();
+  if (subject==="36"){
+    $('#сustom_subject').remove();
+    console.log("LLLL");
+
+    $('#customSubject').append("<div id='сustom_subject'><label for='major'>Введіть предмет за який ви заплатили</label>" +
+    "<input id='input_сustom_subject' type='text' placeholder='Предмет'></div>");
+  }
+  else{
+    $('#сustom_subject').remove();
+
+  }
+
+}
+
+
 function submit(){
   var d = new Date();
   var month = d.getMonth()+1;
@@ -180,6 +224,7 @@ function submit(){
   var _bribeother = $('#bribe-other:checked').length > 0;
   console.log(_bribeyes);
   var _subject = $("#subject").val();
+  var _customSubject = $("#input_сustom_subject").val();
   var _department = $("#department").val();
   console.log(_subject);
   var _official = $("#official").val();
@@ -205,6 +250,7 @@ function submit(){
       forcedyes: _forcedyes,
       bribeother: _bribeother,
       subject: _subject,
+      customSubject: _customSubject,
       official: _official,
       officialName: _officialName,
       amount: _amount,
@@ -225,6 +271,8 @@ function submit(){
     $("#department").val("");
     $("#input_сustom_city").val("");
     $("#input_сustom_university").val("");
+    $("#subject").val("");
+    $("#official").val("");
     $('#confirm').remove();
 
     var resp = 'Дякую';

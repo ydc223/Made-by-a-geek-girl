@@ -15,6 +15,7 @@ var userSchema = new Schema({
   forcedyes: { type: String },
   bribeother: { type: String },
   subject: { type: String },
+  customSubject: { type: String },
   department: { type: String },
   official: { type: String },
   officialName: { type: String },
