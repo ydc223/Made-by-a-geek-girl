@@ -1,6 +1,6 @@
 # A [website](http://paidgrade.info) developed by Yana Chala, CS student at NYUAD
 
-The website cointains a blog about technological biases and the influence of software on people's lives. <br>
+The website cointains a [blog](http://paidgrade.info/blog.html) about technological biases and the influence of software on people's lives. <br>
 In addition it hosts the projects that I have worked on for the past semester:
 <br>
 <br>
