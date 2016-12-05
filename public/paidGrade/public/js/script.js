@@ -1,14 +1,26 @@
-$(document).ready(test());
+$(document).ready(fetchTranslations());
+
+function fetchTranslations(){
+  $.ajax({
+    url: "/translations",
+    type: "GET",
+    datatype: "json"
+  }).done(function(json){
+    console.log(json);
+  }).fail(function(xhr, status, error){
+    console.log('not cool');
+  });
+}
 
 function test(){
   $.ajax({
-    url: "/test",
+    url: "/filter",
     type: "GET",
     datatype: "json"
   }).done(function(json){
     console.log('cool');
   }).fail(function(xhr, status, error){
-    $("#confirmation").append("<p id='submit_failed'> Щось пішло не так, спробуйте ще раз.</p>");
+    console.log('not cool');
   });
 }
 
@@ -95,8 +107,8 @@ function universtityHandler(){
   var university = $("#university").val();
   if (university=="other"){
     $('#сustom_university').remove();
-    $('#customUniversity').append("<div id='сustom_university'><label for='major'>Введіть ім'я вашого університету</label>" +
-    "<input id='input_сustom_university' type='text' placeholder='Університет'></div>");
+    $('#customUniversity').append("<div id='сustom_university'><label for='major'>Введіть ім'я вашого навчального закладу</label>" +
+    "<input id='input_сustom_university' type='text' placeholder='Навчальний заклад'></div>");
   }
   else{
     $('#сustom_university').remove();
@@ -121,7 +133,6 @@ function cityHandler(){
         .append("<option value='knuba'>Київський національний університет будівництва і архітектури</option>")
         .append("<option value='knlu'>Київський національний лінгвістичний університет</option>")
         .append("<option value='other'> Інший </option>");
-
   }
   else if (city=="kharkiv"){
     $('#сustom_city').remove();
@@ -151,9 +162,11 @@ function cityHandler(){
         .end()
         .append("<option value='lpol'>Національний університет “Львівська політехніка”</option>")
         .append("<option value='lnufranka'>Львівський національний університет ім. Івана Франка</option>")
-        .append("<option value='khpi'> Львівська державна фінансова академія (ЛДФА)</option>")
-        .append("<option value='kmudrogo'>Львівська національна академія мистецтв (ЛНАМ)</option>")
+        .append("<option value='ldfa'> Львівська державна фінансова академія (ЛДФА)</option>")
+        .append("<option value='lnam'>Львівська національна академія мистецтв (ЛНАМ)</option>")
         .append("<option value='other'> Інший </option>");
+
+
 
   }
   else if (city=="odesa"){
@@ -172,6 +185,8 @@ function cityHandler(){
         .append("<option value='omgu'>Міжнародний гуманітарний університет</option>")
         .append("<option value='other'> Інший </option>");
 
+
+
   }
   else if (city=="other"){
     $('#сustom_university').remove();
@@ -179,8 +194,8 @@ function cityHandler(){
 
     $('#customCity').append("<div id='сustom_city'><label for='major'>Введіть ваше місто навчання</label>" +
     "<input id='input_сustom_city' type='text' placeholder='Місто'></div>");
-    $('#customUniversity').append("<div id='сustom_university'><label for='major'>Введіть ім'я вашего університету</label>" +
-    "<input id='input_сustom_university' type='text' placeholder='Університет'></div>");
+    $('#customUniversity').append("<div id='сustom_university'><label for='major'>Введіть ім'я вашего навчального закладу</label>" +
+    "<input id='input_сustom_university' type='text' placeholder='Навчальний заклад'></div>");
     $('#university')
         .find('option')
         .remove()
@@ -276,6 +291,7 @@ function submit(){
     $('#confirm').remove();
 
     var resp = 'Дякую';
+    $("submit_failed").remove();
     $("#confirmation").append("<center><p id='confirm'>Дякую за вашу допомогу</p></center>");
 
   }).fail(function(xhr, status, error){
@@ -285,3 +301,11 @@ function submit(){
     console.dir( xhr );
   });
 }
+
+function populate_translations(){
+  for(var i=0; i < translations.length; i++){
+    var element = document.getElementById(translations[i]["id"]);
+    var text = document.createTextNode(translations[i][lang]);
+    element.appendChild(text);
+  }
+};

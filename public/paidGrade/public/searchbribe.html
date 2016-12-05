@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title></title>
+  <link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.6.0/pure-min.css">
+  <script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
+  <!-- <script src="https://use.fontawesome.com/341779c185.js"></script>
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Poiret+One" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Pontano+Sans" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,600" rel="stylesheet">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.3.2/jspdf.debug.js"></script> -->
+
+  <link rel="stylesheet" href="css/layouts/marketing.css">
+  <link rel="stylesheet" href="css/layouts/style.css">
+
+
+</head>
+<body >
+<header>
+  <h1 id="title"></h1>
+</header>
+
+<main>
+  <div class="">
+    <form id='filter-form' onchange="filter_bribes(event)" onsubmit="filter_bribes(event);" class="pure-form">
+      <label for="city" id="label-for-city"></label>
+      <select class="search-form" name="city" id="city" >
+        <option value="-1"></option>
+      </select>
+
+      <label for="university" id="label-for-university"></label>
+      <select class="search-form" name="university" id="university" onchange="filter_bribes(event)" onsubmit="filter_bribes(event);">
+        <option value="-1"></option>
+      </select>
+
+      <label for="subject" id="label-for-subject"></label>
+      <select class="search-form" name="subject" id="subject" onchange="filter_bribes(event)" onsubmit="filter_bribes(event);">
+        <option value="-1"></option>
+      </select>
+
+      <input type="text" onkeyup="filter_bribes(event)" id="custom-search" placeholder="Шукати по ключовим словам">
+    </form>
+  </div>
+  <div id="bribe-box"></div>
+
+
+</main>
+
+<footer>
+
+</footer>
+
+
+<script src="js/search.js"></script>
+
+</body>
+</html>

@@ -9,20 +9,6 @@ var User = require('./user');
 var mongoose = require('mongoose');
 var router = express.Router();
 
-// i18n.configure({
-//   // setup some locales - other locales default to en silently
-//   locales: ['uk', 'en'],
-//
-//
-//   // where to store json files - defaults to './locales'
-//   directory: __dirname + '/locales'
-// });
-//
-//
-// // i18n init parses req for language headers, cookies, etc.
-// app.use(i18n.init);
-
-
 exports.test = function(req, res, err){
   if(err)
     console.log(err);
@@ -35,8 +21,20 @@ exports.test = function(req, res, err){
 
     // object of all the users
     console.log(users);
+
     console.log(users.length);
+    // res.setHeader("Content-Type", "application/json");
+    res.json(users);
+    res.end();
 
   })
+};
 
-}
+exports.translations = function(req, res, err){
+  if(err)
+    console.log(err);
+    var obj = JSON.parse(fs.readFileSync('./public/paidGrade/public/data/translations.json'));
+    // res.setHeader("Content-Type", "application/json");
+    res.json(obj);
+    res.end();
+};

@@ -52,9 +52,9 @@
       <div class="home-menu pure-menu pure-menu-horizontal pure-menu-fixed">
 
           <ul class="pure-menu-list">
-              <li class="pure-menu-item pure-menu-selected"><a href="#" class="pure-menu-link">PAID GRADE</a></li>
-              <li class="pure-menu-item"><a href="#information" class="pure-menu-link">ПРО НАС</a></li>
-              <li class="pure-menu-item"><a href="#contacts" class="pure-menu-link">КОНТАКТИ</a></li>
+              <li class="pure-menu-item pure-menu-selected" id='paidgrade-label'><a href="searchbribe.html" class="pure-menu-link">PAID GRADE</a></li>
+              <li class="pure-menu-item" id='about-label'><a href="#information" class="pure-menu-link">ПРО НАС</a></li>
+              <li class="pure-menu-item" id='contacts-label'><a href="#contacts" class="pure-menu-link">КОНТАКТИ</a></li>
           </ul>
       </div>
   </div>
@@ -65,7 +65,7 @@
 <div class="splash-container">
     <div class="splash">
       <p>
-        <a href="#information" class="pure-button pure-button-active" id="btn">Поділитися досвідом</a>
+        <a href="#information" class="pure-button pure-button-active" id="info-btn">Поділитися досвідом</a>
       </p>
     </div>
 </div>
@@ -73,8 +73,8 @@
 <div id="information" class="content-wrapper">
 
     <div class="content">
-        <center><h2 class="content-head is-center">Поділись особистим досвідом хабарництва в сфері освіти </h2></center>
-        <center><p class="content-head is-center"> Майте на увазі, що правдивість вашої інформації грає дуже важливу
+        <center><h2 class="content-head is-center" id='content-header'>Поділись особистим досвідом хабарництва в сфері освіти </h2></center>
+        <center><p class="content-head is-center" id='content-header-p'> Майте на увазі, що правдивість вашої інформації грає дуже важливу
           роль. Ви можете залишитися анонімним, якщо забажаете. Надана вами інформація буде використана
         виключно в наукових цілях. </p></center>
 
@@ -83,15 +83,16 @@
             <div class="l-box-lrg pure-u-1 pure-u-md-2-5">
                 <div class="pure-form  pure-form-stacked">
 
-                        <label for="name">Ім'я (необов'язково)</label>
+                        <label for="name" id="name-label"></label>
                         <input id="name" type="text" placeholder="Ім'я">
 
 
-                        <label for="email">Email (необов'язково)</label>
+                        <label for="email" id="email-label"></label>
                         <input id="email" type="email" placeholder="Email" required>
 
-                        <label for="city">Місто навчання</label>
+                        <label for="city"  id="city-label"></label>
                         <select id="city" placeholder="Інше" onchange="cityHandler()">
+                          <option value='-1'></option>
                           <option value="kiev">Київ</option>
                           <option value="lviv">Львів</option>
                           <option value="kharkiv">Харків</option>
@@ -105,8 +106,9 @@
                         <div id="customCity"></div>
 
 
-                        <label for="university">Університет</label>
+                        <label for="university"  id="university-label"></label>
                         <select id="university" placeholder="Інший" onchange="universtityHandler()">
+                          <option value='-1'></option>
                           <option value='knu'>Київський національний університет імені Тараса Шевченка (КНУ)</option>
                           <option value='knau'>Національний авіаційний університет (НАУ)</option>
                           <option value='kteu'>Київський національний торговельно-економічний університет</option>
@@ -126,26 +128,26 @@
 
                         <div id="invalid_major" class="red"></div>
 
-                        <label for="major">Ваша спеціальність (повна назва)</label>
+                        <label for="major" id='major-label'></label>
                         <input id="major" type="text" placeholder="Ваша спеціальність">
 
                         <div id="invalid_department" class="red"></div>
 
-                        <label for="department">Ваш факультет (повна назва)</label>
+                        <label for="department" id='department-label'></label>
                         <input id="department" type="text" placeholder="Ваш факультет">
 
 
-                        <label for="bribe-yes" > Ви колись платили хабар (клацніть поле якщо <i>так</i>, залишіть пустим якщо <i>ні</i>)?
+                        <label for="bribe-yes" id='bribe-yes-label'>
                            <input id="bribe-yes" type="checkbox" >
                            <center>Так</center>
                         </label>
 
-                        <label for="forced-yes" > Вас просили заплатити?
+                        <label for="forced-yes" id='forced-yes-label'>
                            <input id="forced-yes" type="checkbox">
                            <center>Так</center>
                          </label>
 
-                       <label for="bribe-other" > Чи відомі вам інші випадки хабарництва в вашому вузі?
+                       <label for="bribe-other" id='bribe-other-label'> 
                           <input id="bribe-other" type="checkbox">
                           <center>Так</center>
                         </label>
@@ -153,7 +155,7 @@
 
                         <div id="invalid_subject" class="red"></div>
 
-                        <label for="subject">За який предмет ви платили хабар? (Вибиріть найближчу сферу навчання)</label>
+                        <label for="subject" id='subject-label'></label>
                         <select id="subject" placeholder="Предмет" onchange="subjectHandler()">
                           <option value="-1"></option>
                           <option value="0">Готельно-ресторанна справа, туризм</option>
@@ -200,7 +202,7 @@
                         <div id="invalid_official" class="red"></div>
 
 
-                        <label for="official">Посадова особа</label>
+                        <label for="official" id='official-label'></label>
                         <select id="official" placeholder="Посадова особа" >
                           <option value="-1"> </option>
                           <option value="0">Викладач</option>
@@ -209,15 +211,15 @@
                     			<option value="3">Інша</option>
                         </select>
 
-                        <label for="officialName">Ім'я посадової особи (необов'язково)</label>
+                        <label for="officialName" id='officialName-label'></label>
                         <input id="officialName" type="text" placeholder="Ім'я посадової особи">
 
                         <div id="invalid_amount" class="red"></div>
 
-                        <label for="amount">Сума в гривні</label>
+                        <label for="amount" id='amount-label'>Сума в гривні</label>
                         <input id="amount" type="number" min="1" max="25000" placeholder="Сума">
 
-                        <label for="grade">Оцінка</label>
+                        <label for="grade" id='grade-label'>Оцінка</label>
                         <select id="grade" placeholder="Оцінка" >
                           <option value="A">A </option>
                           <option value="A-">A- </option>
@@ -230,10 +232,7 @@
                         </select>
 
 
-
-
-
-                        <label for="size">Розмір вашого потоку?</label>
+                        <label for="size" id='size-label'></label>
                         <select id="size" placeholder="Розмір" >
                           <option value="0">Менше 20</option>
                     			<option value="1">20-50</option>
@@ -244,7 +243,7 @@
 
                         <div id=confirmation></div>
 
-                        <center><button id="btn" type="submit" class="pure-button" onclick="validateInput()">Поділитися</button></center>
+                        <center><button id="share-btn" type="submit" class="pure-button" onclick="validateInput()"></button></center>
 
 
                 </div>
