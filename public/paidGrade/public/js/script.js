@@ -1,16 +1,4 @@
-$(document).ready(fetchTranslations());
-
-function fetchTranslations(){
-  $.ajax({
-    url: "/translations",
-    type: "GET",
-    datatype: "json"
-  }).done(function(json){
-    console.log(json);
-  }).fail(function(xhr, status, error){
-    console.log('not cool');
-  });
-}
+$(document).ready(test());
 
 function test(){
   $.ajax({

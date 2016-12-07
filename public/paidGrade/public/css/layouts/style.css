@@ -1,3 +1,36 @@
 .search-form{
   width: 20%;
+  margin-top: 10px;
+}
+
+.content{
+  margin: 1em;
+  margin-top: 3em;
+}
+
+#title{
+  text-align: center;
+}
+
+#bribe-box{
+ list-style-type: none;
+}
+
+#bribe-box li{
+  margin: 10px;
+   border: 2px solid #ddd;
+   border-radius: 10px;
+}
+
+#lang{
+  border: 2px solid #ddd;
+  box-shadow: none;
+  background: transparent;
+  font-size: 120%;
+  color: #000;
+  float: left;
+  width: 6%;
+  margin-left: 1em;
+  margin-top: 5px;
+
 }

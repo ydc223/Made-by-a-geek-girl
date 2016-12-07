@@ -3,7 +3,7 @@
   color: red;
 }
 
-#btn{
+#info-btn, #share-btn{
   font-size: 150%;
 }
 
@@ -261,7 +261,7 @@ a.pure-button-primary {
  */
 
 .splash-container {
-    background-image: url(../../img/common/corruption.jpg);
+    background-image: url(../../img/common/corruption2.jpg);
     background-size: 100%;
     z-index: 1;
     overflow: hidden;

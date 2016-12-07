@@ -20,6 +20,7 @@ var userSchema = new Schema({
   official: { type: String },
   officialName: { type: String },
   amount: { type: String },
+  grade: { type: String },
   size: { type: Number },
   date: {type: String }
 });

@@ -6,55 +6,35 @@
 <meta name="description" content="A layout example that shows off a responsive product landing page.">
 
     <title>Paid Grade</title>
-<link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.6.0/pure-min.css">
 
-<link rel='stylesheet prefetch' href='http:////netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css'>
-
-
-
-
-<!--[if lte IE 8]>
-
-    <link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.6.0/grids-responsive-old-ie-min.css">
-
-<![endif]-->
-<!--[if gt IE 8]><!-->
-
+    <!--Pure CSS-->
+    <link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.6.0/pure-min.css">
     <link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.6.0/grids-responsive-min.css">
 
-<!--<![endif]-->
+    <!--Icons-->
+    <link rel='stylesheet prefetch' href='http:////netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css'>
 
-<link rel="stylesheet" href="http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css">
+    <link rel="stylesheet" href="css/layouts/marketing.css">
+    <link rel="stylesheet" href="css/layouts/style.css">
 
-    <!--[if lte IE 8]>
-        <link rel="stylesheet" href="css/layouts/marketing-old-ie.css">
-    <![endif]-->
-    <!--[if gt IE 8]><!-->
-        <link rel="stylesheet" href="css/layouts/marketing.css">
-    <!--<![endif]-->
 
     <!--Jquery-->
 
     <script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
-
-
-
 </head>
 <body>
-
-
-
-
-
-
-
   <div class="header">
       <div class="home-menu pure-menu pure-menu-horizontal pure-menu-fixed">
+          <select name="lang" id="lang" onchange="set_language(event)">
+            <option value="uk">Укр</option>
+            <option value="en">Eng</option>
+          </select>
+
 
           <ul class="pure-menu-list">
-              <li class="pure-menu-item pure-menu-selected" id='paidgrade-label'><a href="searchbribe.html" class="pure-menu-link">PAID GRADE</a></li>
-              <li class="pure-menu-item" id='about-label'><a href="#information" class="pure-menu-link">ПРО НАС</a></li>
-              <li class="pure-menu-item" id='contacts-label'><a href="#contacts" class="pure-menu-link">КОНТАКТИ</a></li>
+              <li class="pure-menu-item pure-menu-selected"><a href="searchbribe.html" class="pure-menu-link" id='paidgrade-label'></a></li>
+              <li class="pure-menu-item" ><a href="#information" class="pure-menu-link" id='about-label'></a></li>
+              <li class="pure-menu-item" ><a href="#useful-links-en" class="pure-menu-link" id='contacts-label'></a></li>
           </ul>
       </div>
   </div>
@@ -65,7 +45,7 @@
 <div class="splash-container">
     <div class="splash">
       <p>
-        <a href="#information" class="pure-button pure-button-active" id="info-btn">Поділитися досвідом</a>
+        <a href="#information" class="pure-button pure-button-active" id="info-btn"></a>
       </p>
     </div>
 </div>
@@ -73,10 +53,8 @@
 <div id="information" class="content-wrapper">
 
     <div class="content">
-        <center><h2 class="content-head is-center" id='content-header'>Поділись особистим досвідом хабарництва в сфері освіти </h2></center>
-        <center><p class="content-head is-center" id='content-header-p'> Майте на увазі, що правдивість вашої інформації грає дуже важливу
-          роль. Ви можете залишитися анонімним, якщо забажаете. Надана вами інформація буде використана
-        виключно в наукових цілях. </p></center>
+        <center><h2 class="content-head is-center" id='content-header'> </h2></center>
+        <center><p class="content-head is-center" id='content-header-p'>  </p></center>
 
 
         <div class="pure-g">
@@ -91,7 +69,7 @@
                         <input id="email" type="email" placeholder="Email" required>
 
                         <label for="city"  id="city-label"></label>
-                        <select id="city" placeholder="Інше" onchange="cityHandler()">
+                        <select id="city"  onchange="cityHandler()">
                           <option value='-1'></option>
                           <option value="kiev">Київ</option>
                           <option value="lviv">Львів</option>
@@ -107,7 +85,7 @@
 
 
                         <label for="university"  id="university-label"></label>
-                        <select id="university" placeholder="Інший" onchange="universtityHandler()">
+                        <select id="university"  onchange="universtityHandler()">
                           <option value='-1'></option>
                           <option value='knu'>Київський національний університет імені Тараса Шевченка (КНУ)</option>
                           <option value='knau'>Національний авіаційний університет (НАУ)</option>
@@ -137,26 +115,26 @@
                         <input id="department" type="text" placeholder="Ваш факультет">
 
 
-                        <label for="bribe-yes" id='bribe-yes-label'>
+                        <label for="bribe-yes" id='bribe-yes-label'></label>
+
                            <input id="bribe-yes" type="checkbox" >
                            <center>Так</center>
-                        </label>
 
-                        <label for="forced-yes" id='forced-yes-label'>
+                        <label for="forced-yes" id='forced-yes-label'></label>
+
                            <input id="forced-yes" type="checkbox">
                            <center>Так</center>
-                         </label>
 
-                       <label for="bribe-other" id='bribe-other-label'> 
+                       <label for="bribe-other" id='bribe-other-label'></label>
+
                           <input id="bribe-other" type="checkbox">
                           <center>Так</center>
-                        </label>
 
 
                         <div id="invalid_subject" class="red"></div>
 
                         <label for="subject" id='subject-label'></label>
-                        <select id="subject" placeholder="Предмет" onchange="subjectHandler()">
+                        <select id="subject" onchange="subjectHandler()">
                           <option value="-1"></option>
                           <option value="0">Готельно-ресторанна справа, туризм</option>
                     			<option value="1">Ветеринарна медицина</option>
@@ -203,7 +181,7 @@
 
 
                         <label for="official" id='official-label'></label>
-                        <select id="official" placeholder="Посадова особа" >
+                        <select id="official"  >
                           <option value="-1"> </option>
                           <option value="0">Викладач</option>
                     			<option value="1">Аспірант</option>
@@ -221,6 +199,7 @@
 
                         <label for="grade" id='grade-label'>Оцінка</label>
                         <select id="grade" placeholder="Оцінка" >
+                          <option value="-1"> </option>
                           <option value="A">A </option>
                           <option value="A-">A- </option>
                           <option value="B+">B+ </option>
@@ -234,6 +213,7 @@
 
                         <label for="size" id='size-label'></label>
                         <select id="size" placeholder="Розмір" >
+                          <option value="-1"> </option>
                           <option value="0">Менше 20</option>
                     			<option value="1">20-50</option>
                     			<option value="2">50-100</option>
@@ -252,63 +232,43 @@
             <div  class="l-box-lrg pure-u-1 pure-u-md-3-5">
 
 
-              <h4>Більше інформації</h4>
-                <p>
-                  Корупція є неприйнятним явищем в престижних універстетах світу, оскільки вища освіта грає
-                  найважливішу роль у формуванні поглядів, знання та досвіду.
-                  Українці - дуже розумна нація, яка здатна на інновації та наукові вікриття,
-                  але, нажаль, корупція в сфері освіти дуже лімітує український потенціал та стає на заваді до якісної освіти.
-                  Корупцію можна здолати суспільними зусиллями, але для цього потрібно щоб громадяни індивідуально хотіли цього.
+              <h4 id="more-information">Більше інформації</h4>
+                <p id="more-information-p">
                 </p>
 
-                <p>
-                  Тому я вирішила створити проект, Paid Grade який не тільки демонструє рівень корупції в сфері освіти
-                  а й пропонує рішення цієї проблеми. Метою проекту є продемонструвати, що корупція в сфері освіти не є
-                  нормою в розвинутих країнах і заохотити студентів та викладачів активно повідомляти про випадки корупції.
-                </p>
+                <h4 id="stages-dev">Стадії розробки</h4>
+                  <p id="stages-dev-p">
 
-                <h4>Стадії розробки</h4>
-                  <p>
-                    Перша стадія: зібрати інформацію про випадки хабарництва в університетах.
-                  </p>
-                  <p>
-
-                    Друга стадія: проаналізувати інформацію та зробити її публічно доступною
-                    (таку як, вартість середньостатистичного хабара залежно від міста та університету).
-                  </p>
-                  <p>
-                    Третя стадія: розробити офіційну онлайн систему для повідомлення випадків
-                    корупції в державних установах України.
                   </p>
 
 
-                  <h4 >Корисні посилання українською</h4>
+                  <h4 id="useful-links-uk"></h4>
                       <ul class="list-unstyled links">
-                      <li><a href="http://www.acrc.org.ua/ua/contacts/kudy-poskarzhytys-na-korupcziyu.html">&emsp; &emsp;  Куди поскаржитись про корупцію</a></li>
-                      <li><a href="http://www.acrc.org.ua/ua/legislation/laws-of-ukraine/">&emsp; &emsp;  Антикорупційний портал</a></li>
-                      <li><a href="http://www.acrc.org.ua/ua/legislation/laws-of-ukraine/">&emsp;&emsp;   Закони України щодо корупції</a></li>
-                      <li><a href="http://kiis.com.ua/materials/pr/20161602_corruption/Corruption%20in%20Ukraine%202015%20UKR.pdf">&emsp;&emsp;   Стан корупції в Украіні</a></li>
-                      <li><a href="http://ti-ukraine.org/system/files/docs/news/how-much-does-corruption-cost-ukraine_presentation_ces.pdf">
-                        &emsp; &emsp;Якби не було корупції</a></li>
-                      <li><a href="http://ti-ukraine.org/%D1%82%D0%B5%D0%B3%D0%B8/%D0%BA%D0%BE%D1%80%D1%83%D0%BF%D1%86%D1%96%D1%8F">&emsp; &emsp;  Transparancy International</a></li>
-                      <li><a href="http://voxukraine.org/2016/02/04/addressing-corruption-in-ukraine-ua/">&emsp;&emsp;   Боротьба з корупцією</a></li>
+                      <li><a id="uklink-1" href="http://www.acrc.org.ua/ua/contacts/kudy-poskarzhytys-na-korupcziyu.html"> </a></li>
+                      <li><a id="uklink-2" href="http://www.acrc.org.ua/ua/legislation/laws-of-ukraine/"> </a></li>
+                      <li><a id="uklink-3" href="http://www.acrc.org.ua/ua/legislation/laws-of-ukraine/">   </a></li>
+                      <li><a id="uklink-4" href="http://kiis.com.ua/materials/pr/20161602_corruption/Corruption%20in%20Ukraine%202015%20UKR.pdf">  </a></li>
+                      <li><a id="uklink-5" href="http://ti-ukraine.org/system/files/docs/news/how-much-does-corruption-cost-ukraine_presentation_ces.pdf">
+                        &emsp; &emsp;</a></li>
+                      <li><a id="uklink-6" href="http://ti-ukraine.org/%D1%82%D0%B5%D0%B3%D0%B8/%D0%BA%D0%BE%D1%80%D1%83%D0%BF%D1%86%D1%96%D1%8F">  </a></li>
+                      <li><a id="uklink-7" href="http://voxukraine.org/2016/02/04/addressing-corruption-in-ukraine-ua/"></a></li>
                     </ul>
 
-                    <h4 id="contacts">Корисні посилання англійською</h4>
+                    <h4 id="useful-links-en">Корисні посилання англійською</h4>
                       <ul class="list-unstyled links">
-                        <li><a href="http://www.ua.undp.org/content/ukraine/en/home/presscenter/articles/2016/03/15/new-project-to-help-ukraine-prevent-corruption.html
+                        <li><a id="enlink-1" href="http://www.ua.undp.org/content/ukraine/en/home/presscenter/articles/2016/03/15/new-project-to-help-ukraine-prevent-corruption.html
                             ">&emsp;&emsp;   Project to prevent corruption</a></li>
-                        <li><a href="http://www.coe.int/t/DGHL/cooperation/economiccrime/corruption/Projects/upac/upac_en.asp">
+                        <li><a id="enlink-2" href="http://www.coe.int/t/DGHL/cooperation/economiccrime/corruption/Projects/upac/upac_en.asp">
                           &emsp;&emsp;   Corruption UPAC Project Ukraine</a></li>
-                        <li><a href="http://www.oecd.org/corruption/acn/ukraine-oecd-anti-corruption-project.htm
+                        <li><a id="enlink-3" href="http://www.oecd.org/corruption/acn/ukraine-oecd-anti-corruption-project.htm
                           ">&emsp;&emsp;   Anti corruption network </a></li>
-                        <li><a href="http://www.transparency.org/content/download/32778/502137">&emsp;&emsp;   Corruption Perception Index</a></li>
-                        <li><a href="https://www.google.ae/url?sa=t&rct=j&q=&esrc=s&source=web&cd=2&cad=rja&uact=8&ved=0ahUKEwjGw_fejszQAhVGaxQKHSVEBX4QFggnMAE&url=https%3A%2F%2Fejournals.bc.edu%2Fojs%2Findex.php%2Fihe%2Farticle%2Fdownload%2F7981%2F7132&usg=AFQjCNHS3GnUxi9-qupPNWYRnv3XA95Dww&sig2=Q0sP_MGmrGssvX3euYwXEw&bvm=bv.139782543,d.bGg
+                        <li><a id="enlink-4" href="http://www.transparency.org/content/download/32778/502137">&emsp;&emsp;   Corruption Perception Index</a></li>
+                        <li><a id="enlink-5" href="https://www.google.ae/url?sa=t&rct=j&q=&esrc=s&source=web&cd=2&cad=rja&uact=8&ved=0ahUKEwjGw_fejszQAhVGaxQKHSVEBX4QFggnMAE&url=https%3A%2F%2Fejournals.bc.edu%2Fojs%2Findex.php%2Fihe%2Farticle%2Fdownload%2F7981%2F7132&usg=AFQjCNHS3GnUxi9-qupPNWYRnv3XA95Dww&sig2=Q0sP_MGmrGssvX3euYwXEw&bvm=bv.139782543,d.bGg
                           ">&emsp;&emsp;   Higher Education Corruption in Ukraine</a></li>
                       </ul>
 
-                <h4>Контакти</h4>
-                <p>Засновник проекту - Яна Чала - студентка в Нью Йоркському Університеті в Абу Дабі, що вивчає комп'ютерні науки.
+                <h4 id= "contacts">Контакти</h4>
+                <p id= "contacts-p" >Засновник проекту - Яна Чала - студентка в Нью Йоркському Університеті в Абу Дабі, що вивчає комп'ютерні науки.
                 Будь ласка відправляйте коментарі та пропозиції на мою електронну пошту ydc223@nyu.edu або зв'яжіться зі мною на соціальних мережах.
               </p>
 
@@ -330,6 +290,8 @@
 
 </div>
 <script type="text/javascript" src="js/script.js"></script>
+<script type="text/javascript" src="js/fetchTranslations.js"></script>
+
 
 
 </body>
