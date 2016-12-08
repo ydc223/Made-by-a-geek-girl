@@ -98,6 +98,7 @@ app.get('/comments', moreThan140.fetchComments);
 app.get('/submit', paidgrade.submitBribe);
 app.get('/filter', testdata.test);
 app.get('/translations', testdata.translations);
+app.get('/latlong', paidgrade.getLatlong);
 
 
 

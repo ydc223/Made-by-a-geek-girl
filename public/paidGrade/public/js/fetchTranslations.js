@@ -1,9 +1,11 @@
-var lang = "uk";
+var lang;
 var translations;
 $(document).ready(fetchTranslations());
 
 function set_language (){
+
   lang = document.getElementById('lang').value;
+  localStorage.setItem("lang", lang);
   populate_translations();
 }
 
@@ -31,6 +33,8 @@ function populate_translations(){
 };
 
 function fetchTranslations(){
+  handle_language();
+
   $.ajax({
     url: "/translations",
     type: "GET",
@@ -44,3 +48,42 @@ function fetchTranslations(){
     console.log('not cool');
   });
 };
+
+function handle_language(){
+  //Setting the language and populting the language change drodown
+  lang = localStorage.getItem("lang");
+  console.log(lang);
+  if (!lang){
+    lang = "uk";
+    localStorage.setItem("lang", lang);
+  }
+
+  var lang_dropdow = document.getElementById('lang');
+
+  while (lang_dropdow.firstChild) {
+    lang_dropdow.removeChild(lang_dropdow.firstChild);
+  }
+
+  var option = document.createElement('option');
+  if (lang==="uk"){
+    console.log("First case");
+    var text = option.innerHTML  = "Укр";
+    option.value = "uk";
+    lang_dropdow.append(option);
+    var option = document.createElement('option');
+    var text = option.innerHTML  = "Eng";
+    option.value = "en";
+    lang_dropdow.append(option);
+  }
+  else{
+    console.log("Second case");
+
+    var text = option.innerHTML  = "Eng";
+    option.value = "en";
+    lang_dropdow.append(option);
+    var option = document.createElement('option');
+    var text = option.innerHTML  = "Укр";
+    option.value = "uk";
+    lang_dropdow.append(option);
+  }
+}

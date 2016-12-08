@@ -11,12 +11,18 @@
     <link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.6.0/pure-min.css">
     <link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.6.0/grids-responsive-min.css">
 
+    <!--Maps-->
+    <script src="https://www.amcharts.com/lib/3/ammap.js"></script>
+    <script src="https://www.amcharts.com/lib/3/maps/js/ukraineHigh.js"></script>
+    <script src="https://www.amcharts.com/lib/3/plugins/export/export.min.js"></script>
+    <link rel="stylesheet" href="https://www.amcharts.com/lib/3/plugins/export/export.css" type="text/css" media="all" />
+    <script src="https://www.amcharts.com/lib/3/themes/black.js"></script>
+
     <!--Icons-->
     <link rel='stylesheet prefetch' href='http:////netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css'>
 
     <link rel="stylesheet" href="css/layouts/marketing.css">
     <link rel="stylesheet" href="css/layouts/style.css">
-
 
     <!--Jquery-->
 
@@ -26,8 +32,7 @@
   <div class="header">
       <div class="home-menu pure-menu pure-menu-horizontal pure-menu-fixed">
           <select name="lang" id="lang" onchange="set_language(event)">
-            <option value="uk">Укр</option>
-            <option value="en">Eng</option>
+
           </select>
 
 
@@ -43,11 +48,9 @@
 
 
 <div class="splash-container">
-    <div class="splash">
-      <p>
-        <a href="#information" class="pure-button pure-button-active" id="info-btn"></a>
-      </p>
-    </div>
+  <div id="chartdiv"></div>
+
+    
 </div>
 
 <div id="information" class="content-wrapper">
@@ -56,6 +59,7 @@
         <center><h2 class="content-head is-center" id='content-header'> </h2></center>
         <center><p class="content-head is-center" id='content-header-p'>  </p></center>
 
+        <div id="placeholder"></div>
 
         <div class="pure-g">
             <div class="l-box-lrg pure-u-1 pure-u-md-2-5">
@@ -291,6 +295,8 @@
 </div>
 <script type="text/javascript" src="js/script.js"></script>
 <script type="text/javascript" src="js/fetchTranslations.js"></script>
+<script type="text/javascript" src="js/maps.js"></script>
+
 
 
 

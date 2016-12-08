@@ -3,17 +3,21 @@ var subjects = [ { "uk": "Готельно-ресторанна справа, т
 var translations = [{"id": "title", "uk": "Інформація про взятки в різних університетах", "en": "Search through reported information"}, {"id": "label-for-city", "uk": "Місто", "en": "City"}, {"id": "label-for-university", "uk": "Університет", "en": "University"}, {"id": "label-for-subject", "uk": "Предмет", "en": "Subject"},{"id": "paidgrade-label", "uk": "PAID GRADE", "en": "PAID GRADE"},{"id": "about-label", "uk": "ПРО НАС", "en": "ABOUT"},{"id": "contacts-label", "uk": "КОНТАКТИ", "en": "CONTACTS"}];
 var cities = [{"uk": "Київ", "en": "Kiev"}, {"uk": "Харків", "en": "Kharkiv"},{"uk": "Львів", "en": "Lviv"},{"uk": "Одеса", "en": "Odesa"}, { "uk": "Інше", "en": "Other" }];
 
-var lang = "uk";
+var lang;
 
-$(document).ready(populate_dropdowns(),
-populate_translations());
+$(document).ready(handle_language(),
+  populate_dropdowns(),
+  populate_translations(),
+  filter_bribes()
+);
 
 
 
 function set_language (){
   lang = document.getElementById('lang').value;
-  populate_dropdowns();
+  localStorage.setItem("lang", lang);
   populate_translations();
+  populate_dropdowns();
 }
 
 function populate_translations(){
@@ -172,4 +176,43 @@ function get_bribe_element(bribe, id_num) {
 
 
   return bribe_li;
+}
+
+function handle_language(){
+  //Setting the language and populting the language change drodown
+  lang = localStorage.getItem("lang");
+  console.log(lang);
+  if (!lang){
+    lang = "uk";
+    localStorage.setItem("lang", lang);
+  }
+
+  var lang_dropdow = document.getElementById('lang');
+
+  while (lang_dropdow.firstChild) {
+    lang_dropdow.removeChild(lang_dropdow.firstChild);
+  }
+
+  var option = document.createElement('option');
+  if (lang==="uk"){
+    console.log("First case");
+    var text = option.innerHTML  = "Укр";
+    option.value = "uk";
+    lang_dropdow.append(option);
+    var option = document.createElement('option');
+    var text = option.innerHTML  = "Eng";
+    option.value = "en";
+    lang_dropdow.append(option);
+  }
+  else{
+    console.log("Second case");
+
+    var text = option.innerHTML  = "Eng";
+    option.value = "en";
+    lang_dropdow.append(option);
+    var option = document.createElement('option');
+    var text = option.innerHTML  = "Укр";
+    option.value = "uk";
+    lang_dropdow.append(option);
+  }
 }

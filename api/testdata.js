@@ -20,7 +20,7 @@ exports.test = function(req, res, err){
     if (err) throw err;
 
     // object of all the users
-    console.log(users);
+    // console.log(users);
 
     console.log(users.length);
     // res.setHeader("Content-Type", "application/json");

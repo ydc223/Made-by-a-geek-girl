@@ -1,26 +1,15 @@
 var express = require('express');
 var http = require('http');
 var path = require('path');
+var request = require('request');
+
+
 //fs - the filesystem module that allow to read/write from the disk
 var fs =  require('fs');
 // var i18n = require('i18n');
 var mongoose = require('mongoose');
 var User = require('./user');
 var router = express.Router();
-
-// i18n.configure({
-//   // setup some locales - other locales default to en silently
-//   locales: ['uk', 'en'],
-//
-//
-//   // where to store json files - defaults to './locales'
-//   directory: __dirname + '/locales'
-// });
-//
-//
-// // i18n init parses req for language headers, cookies, etc.
-// app.use(i18n.init);
-
 
 exports.submitBribe = function(req, res, err){
   if(err)
@@ -57,5 +46,38 @@ exports.submitBribe = function(req, res, err){
   // console.log(obj);
 
     console.log('User saved successfully!');
+  });
+}
+
+
+exports.getLatlong = function(req, res, err){
+  if(err)
+    console.log(err);
+
+  var city = req.query;
+  console.log(city);
+  var url = "https://maps.google.com/maps/api/geocode/json?address=" + city + "&sensor=false";
+  request({
+      url: url,
+      json: true
+  },
+  function (error, response, body) {
+    if (error) {
+      console.log(error + "2");
+    }
+    console.log(body);
+
+    if (!error && response.statusCode === 200) {
+      if(body.status === "OK" ){
+      var location = body.results[0].geometry.location;
+        if(body.results[0].geometry.location){
+          res.json(location);
+          res.end();
+        }
+      }
+      if(body.status === "ZERO_RESULTS"){
+        res.end();
+      }
+    }
   });
 }

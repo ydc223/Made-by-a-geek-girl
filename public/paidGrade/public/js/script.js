@@ -289,11 +289,3 @@ function submit(){
     console.dir( xhr );
   });
 }
-
-function populate_translations(){
-  for(var i=0; i < translations.length; i++){
-    var element = document.getElementById(translations[i]["id"]);
-    var text = document.createTextNode(translations[i][lang]);
-    element.appendChild(text);
-  }
-};
