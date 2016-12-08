@@ -24,7 +24,7 @@ myServer.listen(app.get('port'), function(){
 
 });
 
-//sockets - here we connect to our server, you might need to change "httpServer" to something like "app"
+//sockets - here we connect to our server
 
 
 var io = require('socket.io').listen(myServer);

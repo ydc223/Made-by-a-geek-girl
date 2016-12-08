@@ -1,4 +1,4 @@
-$(document).ready(test());
+$(document).ready(get_translations(),test());
 
 function test(){
   $.ajax({
@@ -11,6 +11,20 @@ function test(){
     console.log('not cool');
   });
 }
+
+function get_translations(){
+  $.ajax({
+    url: "/translations",
+    type: "GET",
+    datatype: "json"
+  }).done(function(json){
+    console.log(json);
+    translations = json;
+    console.log(translations);
+  }).fail(function(xhr, status, error){
+    console.log('not cool');
+  });
+};
 
 $(function() {
     $(window).on("scroll", function() {
@@ -104,78 +118,44 @@ function universtityHandler(){
 };
 
 function cityHandler(){
+  console.log(translations);
   var city = $("#city").val();
-  if (city=="kiev"){
+  if (city!=="other"){
     $('#сustom_city').remove();
     $('#сustom_university').remove();
     $('#university')
         .find('option')
         .remove()
-        .end()
-        .append("<option value='knu'>Київський національний університет імені Тараса Шевченка (КНУ)</option>")
-        .append("<option value='knau'>Національний авіаційний університет (НАУ)</option>")
-        .append("<option value='kteu'>Київський національний торговельно-економічний університет</option>")
-        .append("<option value='kpi'>Національний технічний університет України “Київський політехнічний інститут”</option>")
-        .append("<option value='kneu'>Київський національний економічний університет ім. Вадима Гетьмана</option>")
-        .append("<option value='kutd'>Київський національний університет технологій і дизайну</option>")
-        .append("<option value='knuba'>Київський національний університет будівництва і архітектури</option>")
-        .append("<option value='knlu'>Київський національний лінгвістичний університет</option>")
-        .append("<option value='other'> Інший </option>");
+        .end();
+        var city_obj = translations.universities;
+        console.log(city_obj);
+
+        var univerities = city_obj[city];
+        console.log(univerities);
+
+        var option = document.createElement('option');
+        option.innerHTML= "";
+        option.value = "-1";
+        $('#university').append(option);
+
+        for(var i = 0; i < univerities.length; i++ ) {
+          var option = document.createElement('option');
+          option.innerHTML= univerities[i][lang];
+          option.value = univerities[i]["key"];
+          $('#university').append(option);
+        };
+
+        /* Append other */
+        var option = document.createElement('option');
+        if (lang==="uk")
+          option.innerHTML= "Інший";
+        else {
+          option.innerHTML= "Other";
+        }
+        option.value = "other";
+        $('#university').append(option);
   }
-  else if (city=="kharkiv"){
-    $('#сustom_city').remove();
-    $('#сustom_university').remove();
-    $('#university')
-        .find('option')
-        .remove()
-        .end()
-        .append("<option value='khbeketova'>Харківський національний університет міського господарства імені О.М. Бекетова</option>")
-        .append("<option value='khai'>Національний аерокосмічний університет ім. М.Є. Жуковського «Харківський авіаційний інститут»</option>")
-        .append("<option value='khpi'>Національний технічний університет «Харківський політехнічний інститут» (НТУ ХПІ)</option>")
-        .append("<option value='khmudrogo'>Національний юридичний університет імені Ярослава Мудрого</option>")
-        .append("<option value='khmed'>Харківський національний медичний університет (ХНМУ)</option>")
-        .append("<option value='khped'>Харківський національний педагогічний університет імені Г. С. Сковороди (ХНПУ)</option>")
-        .append("<option value='khkarazin'>Харківський національний університет імені В.Н. Каразіна</option>")
-        .append("<option value='khire'>Харківський національний університет радіоелектроніки (ХНУРЕ)</option>")
-        .append("<option value='khneu'>Харківський національний економічний університет</option>")
-        .append("<option value='other'> Інший </option>");
 
-  }
-  else if (city=="lviv"){
-    $('#сustom_city').remove();
-    $('#сustom_university').remove();
-    $('#university')
-        .find('option')
-        .remove()
-        .end()
-        .append("<option value='lpol'>Національний університет “Львівська політехніка”</option>")
-        .append("<option value='lnufranka'>Львівський національний університет ім. Івана Франка</option>")
-        .append("<option value='ldfa'> Львівська державна фінансова академія (ЛДФА)</option>")
-        .append("<option value='lnam'>Львівська національна академія мистецтв (ЛНАМ)</option>")
-        .append("<option value='other'> Інший </option>");
-
-
-
-  }
-  else if (city=="odesa"){
-    $('#сustom_city').remove();
-    $('#сustom_university').remove();
-    $('#university')
-        .find('option')
-        .remove()
-        .end()
-        .append("<option value='onua'>Одеська національна юридична академія</option>")
-        .append("<option value='onpu'>Одеський національний політехнічний університет</option>")
-        .append("<option value='onumechnikova'>Одеський національний університет ім. І.І. Мечнікова</option>")
-        .append("<option value='odaba'>Одеська державна академія будівництва і архітектури</option>")
-        .append("<option value='odeu'>Одеський державний економічний університет</option>")
-        .append("<option value='onma'>Одеська національна морська академія</option>")
-        .append("<option value='omgu'>Міжнародний гуманітарний університет</option>")
-        .append("<option value='other'> Інший </option>");
-
-
-
-  }
   else if (city=="other"){
     $('#сustom_university').remove();
     $('#сustom_city').remove();
@@ -192,11 +172,110 @@ function cityHandler(){
   }
 }
 
+// function cityHandler(){
+//   var city = $("#city").val();
+//   if (city=="kiev"){
+//     $('#сustom_city').remove();
+//     $('#сustom_university').remove();
+//     $('#university')
+//         .find('option')
+//         .remove()
+//         .end();
+//         var kiev = translations.univerities;
+//         var kiev
+//
+//
+//         for(var i = 0; i < official.length; i++ ) {
+//           var option = document.createElement('option');
+//           option.innerHTML= official[i][lang];
+//           option.value = i;
+//           $('#university').append(option);
+//         };
+//         // .append("<option value='knu'>Київський національний університет імені Тараса Шевченка (КНУ)</option>")
+//         // .append("<option value='knau'>Національний авіаційний університет (НАУ)</option>")
+//         // .append("<option value='kteu'>Київський національний торговельно-економічний університет</option>")
+//         // .append("<option value='kpi'>Національний технічний університет України “Київський політехнічний інститут”</option>")
+//         // .append("<option value='kneu'>Київський національний економічний університет ім. Вадима Гетьмана</option>")
+//         // .append("<option value='kutd'>Київський національний університет технологій і дизайну</option>")
+//         // .append("<option value='knuba'>Київський національний університет будівництва і архітектури</option>")
+//         // .append("<option value='knlu'>Київський національний лінгвістичний університет</option>")
+//         // .append("<option value='other'> Інший </option>");
+//   }
+//   else if (city=="kharkiv"){
+//     $('#сustom_city').remove();
+//     $('#сustom_university').remove();
+//     $('#university')
+//         .find('option')
+//         .remove()
+//         .end()
+//         .append("<option value='khbeketova'>Харківський національний університет міського господарства імені О.М. Бекетова</option>")
+//         .append("<option value='khai'>Національний аерокосмічний університет ім. М.Є. Жуковського «Харківський авіаційний інститут»</option>")
+//         .append("<option value='khpi'>Національний технічний університет «Харківський політехнічний інститут» (НТУ ХПІ)</option>")
+//         .append("<option value='khmudrogo'>Національний юридичний університет імені Ярослава Мудрого</option>")
+//         .append("<option value='khmed'>Харківський національний медичний університет (ХНМУ)</option>")
+//         .append("<option value='khped'>Харківський національний педагогічний університет імені Г. С. Сковороди (ХНПУ)</option>")
+//         .append("<option value='khkarazin'>Харківський національний університет імені В.Н. Каразіна</option>")
+//         .append("<option value='khire'>Харківський національний університет радіоелектроніки (ХНУРЕ)</option>")
+//         .append("<option value='khneu'>Харківський національний економічний університет</option>")
+//         .append("<option value='other'> Інший </option>");
+//
+//   }
+//   else if (city=="lviv"){
+//     $('#сustom_city').remove();
+//     $('#сustom_university').remove();
+//     $('#university')
+//         .find('option')
+//         .remove()
+//         .end()
+//         .append("<option value='lpol'>Національний університет “Львівська політехніка”</option>")
+//         .append("<option value='lnufranka'>Львівський національний університет ім. Івана Франка</option>")
+//         .append("<option value='ldfa'> Львівська державна фінансова академія (ЛДФА)</option>")
+//         .append("<option value='lnam'>Львівська національна академія мистецтв (ЛНАМ)</option>")
+//         .append("<option value='other'> Інший </option>");
+//
+//
+//
+//   }
+//   else if (city=="odesa"){
+//     $('#сustom_city').remove();
+//     $('#сustom_university').remove();
+//     $('#university')
+//         .find('option')
+//         .remove()
+//         .end()
+//         .append("<option value='onua'>Одеська національна юридична академія</option>")
+//         .append("<option value='onpu'>Одеський національний політехнічний університет</option>")
+//         .append("<option value='onumechnikova'>Одеський національний університет ім. І.І. Мечнікова</option>")
+//         .append("<option value='odaba'>Одеська державна академія будівництва і архітектури</option>")
+//         .append("<option value='odeu'>Одеський державний економічний університет</option>")
+//         .append("<option value='onma'>Одеська національна морська академія</option>")
+//         .append("<option value='omgu'>Міжнародний гуманітарний університет</option>")
+//         .append("<option value='other'> Інший </option>");
+//
+//
+//
+//   }
+//   else if (city=="other"){
+//     $('#сustom_university').remove();
+//     $('#сustom_city').remove();
+//
+//     $('#customCity').append("<div id='сustom_city'><label for='major'>Введіть ваше місто навчання</label>" +
+//     "<input id='input_сustom_city' type='text' placeholder='Місто'></div>");
+//     $('#customUniversity').append("<div id='сustom_university'><label for='major'>Введіть ім'я вашего навчального закладу</label>" +
+//     "<input id='input_сustom_university' type='text' placeholder='Навчальний заклад'></div>");
+//     $('#university')
+//         .find('option')
+//         .remove()
+//         .end()
+//         .append("<option value='other'> Інший </option>");
+//   }
+// }
+
 function subjectHandler(){
   var subject = $("#subject").val();
+
   if (subject==="36"){
     $('#сustom_subject').remove();
-    console.log("LLLL");
 
     $('#customSubject').append("<div id='сustom_subject'><label for='major'>Введіть предмет за який ви заплатили</label>" +
     "<input id='input_сustom_subject' type='text' placeholder='Предмет'></div>");

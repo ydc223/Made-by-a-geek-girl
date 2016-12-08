@@ -38,11 +38,18 @@
   { "uk": "Право", "en": "Law" },
   { "uk": "Інше", "en": "" } ],
 
+"official":[
+  {"uk": "Викладач", "en": "Professor"},
+  {"uk": "Аспірант", "en": "Teacher Assistant"},
+  {"uk": "Декан", "en": "Dean"},
+  {"uk": "Інша", "en": "Other"}],
+
 "city":[
-  {"uk": "Київ", "en": "Kyiv"},
+  {"uk": "Київ", "en": "Kiev"},
   {"uk": "Харків", "en": "Kharkiv"},
   {"uk": "Львів", "en": "Lviv"},
-  {"uk": "Одеса", "en": "Odesa"}],
+  {"uk": "Одеса", "en": "Odesa"},
+  {"uk": "Інше", "en": "Other" }],
 
 "universities":{
   "kharkiv":

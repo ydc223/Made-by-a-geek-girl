@@ -1,5 +1,9 @@
 $(document).ready(get_data());
 
+// document.onmousemove = function(event){
+//   console.log(event.clientX,event.clientY);
+// }
+
 var latlong = {};
 var vis_info = {};
 
@@ -38,7 +42,7 @@ function get_data(){
       var amount = bribe.amount;
 
       if ( bribe.city !== "other" && bribe.city !== "-1" && bribe.city !== "" && bribe.city !== undefined){
-        if (Object.keys(vis_info).indexOf(bribe.city)!= -1){
+        if (Object.keys(vis_info).indexOf(bribe.city)!== -1){
           var info = vis_info[bribe.city];
           info[0]++;
           if (!(isNaN(parseInt(amount))))
@@ -99,7 +103,7 @@ function getLatlong(){
       var city_name = capitalizeFirstLetter(city);
       var val = vis_info[city][0];
       var average =  Math.floor(vis_info[city][1]/vis_info[city][0]);
-      var name = city_name+"\nBribes reported:"+val+"\nAverage bribe:"+average;
+      var name = city_name+"\nReported:"+val+"\nAverage:"+average;
       obj["name"]= name;
       // console.log(name);
       // console.log(vis_info[city][0]);
@@ -122,7 +126,7 @@ function getLatlong(){
         var city_name = capitalizeFirstLetter(city);
         var val = vis_info[city][0];
         var average =  Math.floor(vis_info[city][1]/vis_info[city][0]);
-        var name = city_name+"\nBribes reported:"+val+"\nAverage bribe:"+average;
+        var name = city_name+"\nReported:"+val+"\nAverage:"+average;
         obj["name"]= name;
         // console.log(name);
         // console.log(vis_info[city][0]);
@@ -183,7 +187,8 @@ function visualize(){
       "longitude": latlong[ id ].lng,
       "latitude": latlong[ id ].lat,
       "title": dataItem.name,
-      "value": value
+      "value": value,
+      "linkToObject": " "
     } );
   }
 
@@ -202,10 +207,7 @@ function visualize(){
       "map": "ukraineHigh",
       "images": images,
       "getAreasFromMap": true,
-      // "areas": [ {
-      //   "id": "Kharkiv",
-      //   "value": 4447100
-      // }]
+
     },
 
     "projection": "miller",
@@ -219,32 +221,41 @@ function visualize(){
     "developerMode": true,
     "listeners": [{
     "event": "clickMapObject",
-    "event": "click",
-    "method": function(event) {
-      console.log(event)
+    // "method": function(obj, chart, event) {
+    // },
+    // "event": "click",
+    "method": function( event) {
+      // circle_click();
+      // console.log( event);
 
-      for ( var i = 0; i < mapData.length; i++ ) {
-        var dataItem = mapData[ i ];
-        var id = dataItem.code;
-        // console.log( latlong[id]);
-        var coordinates = map.coordinatesToStageXY(latlong[ id ].lat,latlong[ id ].lng);
-        console.log(coordinates, dataItem.size);
-        if (event.x <= (coordinates[0]+dataItem.size) && event.y <= (coordinates[1]+dataItem.size )){
-          console.log(true);
-        }
-      }
+      // console.log(event)
+      //
+      // for ( var i = 0; i < mapData.length; i++ ) {
+      //   var dataItem = mapData[ i ];
+      //   var id = dataItem.code;
+      //   // console.log( latlong[id]);
+      //   var coordinates = map.coordinatesToXY(latlong[ id ].lat,latlong[ id ].lng);
+      //   console.log(coordinates, dataItem.size);
+      //   if (event.x <= (coordinates[0]+dataItem.size) && event.y <= (coordinates[1]+dataItem.size )){
+      //     console.log(true);
+      //   }
+      //
+      // }
       // $("#city").val("event.mapObject.title");
+      var label = event.mapObject.title
+      var city = get_first_word(label);
+      console.log(city);
 
-      // localStorage.setItem("prefill", event.mapObject.title);
-
-      // window.location.href="searchbribe.html";
+      localStorage.setItem("prefill", city.toLowerCase());
+      window.location.href="searchbribe.html";
     }
 
+
   }]
-    // "export": {
-    //   "enabled": true
-    // }
-
   } );
+}
 
+function get_first_word(label){
+  var words = label.split("\n");
+  return words[0];
 }

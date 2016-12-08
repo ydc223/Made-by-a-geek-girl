@@ -2,7 +2,7 @@ var universities = JSON.parse('{"kharkiv": [ { "uk": "Харківський н�
 var subjects = [ { "uk": "Готельно-ресторанна справа, туризм", "en": "Hotel and restaurant business, tourism " }, { "uk": "Ветеринарна медицина", "en": "Pediatrics" }, { "uk": "Педагогіка", "en": "Pedagogy" }, { "uk": "Менеджмент, маркетинг", "en": "Management, Marketing" }, { "uk": "Авіаційна та ракетно-космічна техніка", "en": "Aviation and rocket-space equipment" }, { "uk": "Автоматизація, приладобудування", "en": "Automation Instrumentation" }, { "uk": "Біологія, екологія", "en": "Biology, ecology " }, { "uk": "Військові науки, національна безпека", "en": "Military Science, National Security" }, { "uk": "Географія, геологія", "en": "Geography, Geology" }, { "uk": "Журналістика, видавництво та поліграфія",   "en": "Journalism, Publishing and Printing" }, { "uk": "Інформаційні технології, кібербезпека", "en": "Information technology, cybersecurity" }, { "uk": "Історія, археологія", "en": "History, Archaeology" }, { "uk": "Культура, мистецтво", "en": "Culture" }, { "uk": "Koп\\'ютерні науки", "en": "Computer science" }, { "uk": "Легка промисловість", "en": "Light industry" }, { "uk": "Математика, статистика", "en": " Mathematics, Statistics" }, { "uk": "Інженерія, машинобудування", "en": "Engineering" }, { "uk": "Медицина, фармація", "en": "Medicine, pharmacy" }, { "uk": "Металургія", "en": "Metallurgy" }, { "uk": "Цивільна безпека", "en": "Civil Safety" }, { "uk": "Харчові технології", "en": "Food Technology " }, { "uk": "Політологія, міжнародні відносини", "en": "Political science, international relations " }, { "uk": "Психологія", "en": "Psychology" }, { "uk": "Електроніка, телекомунікації", "en": "Electronics, Telecommunications" }, { "uk": "Аграрні науки та продовольство", "en": "Agricultural science" }, { "uk": "Соціологія, соціальна робота", "en": "Sociology" }, { "uk": "Будівництво, архітектура", "en": "Architecture " }, { "uk": "Транспорт", "en": "Transportation" }, { "uk": "Фізика, астрономія", "en": "Physics, astronomy" }, { "uk": "Фізична культура", "en": "Physical Education" }, { "uk": "Філологія", "en": "Philology" }, { "uk": "Філософія, релігія та культурологія", "en": "Philosophy, religious and cultural studies" }, { "uk": "Хімія, біоінженерія", "en": "Chemistry, bioengineering" }, { "uk": "Економіка", "en": "Economy" }, { "uk": "Енергетика", "en": "Energetics" }, { "uk": "Право", "en": "Law" }, { "uk": "Інше", "en": "Other" } ];
 var translations = [{"id": "title", "uk": "Інформація про взятки в різних університетах", "en": "Search through reported information"}, {"id": "label-for-city", "uk": "Місто", "en": "City"}, {"id": "label-for-university", "uk": "Університет", "en": "University"}, {"id": "label-for-subject", "uk": "Предмет", "en": "Subject"},{"id": "paidgrade-label", "uk": "PAID GRADE", "en": "PAID GRADE"},{"id": "about-label", "uk": "ПРО НАС", "en": "ABOUT"},{"id": "contacts-label", "uk": "КОНТАКТИ", "en": "CONTACTS"}];
 var cities = [{"uk": "Київ", "en": "Kiev"}, {"uk": "Харків", "en": "Kharkiv"},{"uk": "Львів", "en": "Lviv"},{"uk": "Одеса", "en": "Odesa"}, { "uk": "Інше", "en": "Other" }];
-
+var valid_cities = ['kharkiv', 'kiev', 'odesa', 'lviv'];
 var lang;
 
 $(document).ready(handle_language(),
@@ -18,6 +18,7 @@ function set_language (){
   localStorage.setItem("lang", lang);
   populate_translations();
   populate_dropdowns();
+  filter_bribes();
 }
 
 function populate_translations(){
@@ -82,6 +83,21 @@ function populate_dropdowns(){
 
 
 function get_criteria () {
+  var prefilled = localStorage.getItem("prefill");
+  console.log(prefilled);
+  if (prefilled!=='null'){
+    console.log(valid_cities);
+    console.log(prefilled in valid_cities);
+    if (valid_cities.indexOf(prefilled)!==-1){
+      document.getElementById('city').value = prefilled;
+      localStorage.setItem("prefill", null);
+    }
+    else{
+      document.getElementById('custom-search').value = prefilled;
+      localStorage.setItem("prefill", null);
+    }
+  }
+
   var city = document.getElementById('city').value;
   var university = document.getElementById('university').value;
   var subject_val = document.getElementById('subject').value;
@@ -89,19 +105,18 @@ function get_criteria () {
 
 
   var obj = {'city': city, 'university': university, 'subject': subject_val, 'custom': custom };
-  console.log(obj);
   return obj;
 };
 
 
 function filter_bribes(){
   var criteria = get_criteria();
+
   $.ajax({
     url: "/filter",
     type: "GET",
     datatype: "json"
   }).done(function(json){
-    console.log(json);
     var bribes = [];
 
     json.forEach(function(bribe) {
@@ -122,16 +137,11 @@ function filter_bribes(){
       var university_flag = (criteria.university === "-1" || bribe.university === criteria.university);
 
       var subject_flag = (criteria.subject === "-1" || bribe.subject === criteria.subject);
-      console.log(criteria.custom);
-
-
-      console.log(city_flag, university_flag, subject_flag, custom_flag );
 
       if (city_flag && university_flag && subject_flag  && custom_flag) {
         bribes.push(bribe);
       }
     });
-    console.log(bribes);
 
     var bribe_box = document.getElementById('bribe-box');
     while (bribe_box.firstChild) {
@@ -147,24 +157,34 @@ function filter_bribes(){
 };
 
 function get_bribe_element(bribe, id_num) {
-  console.log(bribe);
+  // console.log(bribe);
   var amount = bribe.amount;
   var bribe_li = document.createElement('li');
   var city_p = document.createElement('p');
-  city_p.appendChild(document.createTextNode(bribe.city));
-
   var university_p = document.createElement('p');
-  for (var by_city in universities) {
-    arrayofUniversities = universities[by_city];
-    for(var i = 0; i < arrayofUniversities.length; i++ ) {
-      console.log(arrayofUniversities[i]["key"]);
-      console.log(bribe.university);
+  if (bribe.city !== "other"){
+    city_p.appendChild(document.createTextNode(capitalizeFirstLetter(bribe.city)));
+    if (bribe.university !== "other"){
+      for (var by_city in universities) {
+        arrayofUniversities = universities[by_city];
+        for(var i = 0; i < arrayofUniversities.length; i++ ) {
+          // console.log(arrayofUniversities[i]["key"]);
+          // console.log(bribe.university);
 
-      if (arrayofUniversities[i]["key"]===bribe.university)
-        university_p.appendChild(document.createTextNode(arrayofUniversities[i][lang]));
-    };
+          if (arrayofUniversities[i]["key"]===bribe.university)
+            university_p.appendChild(document.createTextNode(arrayofUniversities[i][lang]));
+        };
+      }
+    }
+    else {
+      university_p.appendChild(document.createTextNode(bribe.customUniversity));
+    }
+
   }
-
+  else{
+    city_p.appendChild(document.createTextNode(bribe.customCity));
+    university_p.appendChild(document.createTextNode(bribe.customUniversity));
+  }
 
 
   var course_span_id = document.createElement('span');
@@ -178,10 +198,13 @@ function get_bribe_element(bribe, id_num) {
   return bribe_li;
 }
 
+function capitalizeFirstLetter(string) {
+    return string.charAt(0).toUpperCase() + string.slice(1);
+}
+
 function handle_language(){
   //Setting the language and populting the language change drodown
   lang = localStorage.getItem("lang");
-  console.log(lang);
   if (!lang){
     lang = "uk";
     localStorage.setItem("lang", lang);
@@ -195,7 +218,6 @@ function handle_language(){
 
   var option = document.createElement('option');
   if (lang==="uk"){
-    console.log("First case");
     var text = option.innerHTML  = "Укр";
     option.value = "uk";
     lang_dropdow.append(option);
@@ -205,7 +227,6 @@ function handle_language(){
     lang_dropdow.append(option);
   }
   else{
-    console.log("Second case");
 
     var text = option.innerHTML  = "Eng";
     option.value = "en";
